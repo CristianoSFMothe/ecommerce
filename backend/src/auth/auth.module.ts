@@ -6,6 +6,7 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from '@/prisma/prisma.module';
+import { UsersModule } from '@/users/users.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { PrismaModule } from '@/prisma/prisma.module';
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
     }),
+    UsersModule,
   ],
   providers: [AuthService, JwtStrategy, JwtAuthGuard],
   controllers: [AuthController],
